@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 
-// TypeScript interface for user in MongoDB
 interface User {
   _id: ObjectId;
   email: string;
@@ -12,7 +11,7 @@ interface User {
   passwordHash: string;
 }
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
@@ -28,17 +27,21 @@ const authOptions: AuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) return null;
 
-        // Connect to DB
         const db = await dbConnect();
-        const user = (await db.collection<User>("users").findOne({ email: credentials.email })) || null;
+        const user =
+          (await db
+            .collection<User>("users")
+            .findOne({ email: credentials.email })) || null;
 
         if (!user) return null;
 
-        // Compare password
-        const isValid = await bcrypt.compare(credentials.password, user.passwordHash);
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.passwordHash
+        );
+
         if (!isValid) return null;
 
-        // Return user object
         return {
           id: user._id.toString(),
           email: user.email,
@@ -49,7 +52,7 @@ const authOptions: AuthOptions = {
   ],
 
   pages: {
-    signIn: "/login", // custom login page
+    signIn: "/login",
   },
 
   callbacks: {

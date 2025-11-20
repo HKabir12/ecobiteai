@@ -1,62 +1,22 @@
-"use client";
+import Image from "next/image";
+import LoginForm from "./components/LoginForm";
+import registerIcon from "@/assets/images/reg.jpg"
 
-import { signIn } from "next-auth/react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-
-export default function LoginPage() {
-  const router = useRouter();
-  const [error, setError] = useState("");
-
-  async function handleLogin(e: any) {
-    e.preventDefault();
-    setError("");
-
-    const form = new FormData(e.target);
-
-    const res = await signIn("credentials", {
-      redirect: false,
-      email: form.get("email"),
-      password: form.get("password"),
-    });
-
-    if (res?.error) {
-      setError("Invalid email or password");
-    } else {
-      router.push("/dashboard");
-    }
-  }
-
+const LoginPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center  p-4">
-      <form
-        onSubmit={handleLogin}
-        className="bg-white p-8 rounded-xl shadow-md w-full max-w-md space-y-5"
-      >
-        <h1 className="text-2xl font-bold text-center">Login</h1>
-
-        {error && <p className="text-red-600 text-sm">{error}</p>}
-
-        <input
-          name="email"
-          type="email"
-          required
-          placeholder="Email"
-          className="input"
-        />
-        <input
-          name="password"
-          type="password"
-          required
-          placeholder="Password"
-          className="input"
-        />
-
-        <Button className="w-full bg-green-600 hover:bg-green-700">
-          Login
-        </Button>
-      </form>
+    <div>
+       <div className="flex flex-col-reverse md:flex-row items-center justify-center py-6 sm:space-y-0 md:space-x-8">
+      <LoginForm></LoginForm>
+      <Image
+            src={registerIcon}
+            width={400}
+            height={400}
+            alt="Register Illustration"
+            className="rounded-lg w-[300px] sm:w-[300px] lg:w-[500px] object-cover"
+          />
+    </div>
     </div>
   );
-}
+};
+
+export default LoginPage;

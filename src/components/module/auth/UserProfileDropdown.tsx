@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { User, Settings, LogOut } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 import { IconDashboard } from "@tabler/icons-react";
 import { signOut } from "next-auth/react";
 
@@ -43,13 +43,13 @@ export default function UserProfileDropdown({ session }: UserProfileDropdownProp
           <User className="h-4 w-4 mr-2" /> Profile
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => router.push("/dashboard/admin")}>
+        <DropdownMenuItem onClick={() => router.push("/dashboard")}>
           <IconDashboard className="h-4 w-4 mr-2" /> Dashboard
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => router.push("/settings")}>
+        {/* <DropdownMenuItem onClick={() => router.push("/settings")}>
           <Settings className="h-4 w-4 mr-2" /> Settings
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuItem variant="destructive" onClick={handleLogout}>
           <LogOut className="h-4 w-4 mr-2" /> Logout

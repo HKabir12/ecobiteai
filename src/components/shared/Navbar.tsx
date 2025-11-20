@@ -15,6 +15,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import UserProfileDropdown from "../module/auth/UserProfileDropdown";
+import Image from "next/image";
+import Logo from "@/assets/images/EcoBite.png";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -23,21 +25,19 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/features", label: "Features" },
+    { href: "/inventory", label: "Inventory" },
     { href: "/resources", label: "Resources" },
   ];
 
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="w-full border-b bg-white dark:bg-background sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
+    <header className="w-full border-b dark:bg-background sticky top-0 z-50">
+      <nav className="max-w-8xl mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-3xl font-extrabold tracking-tight text-green-600">
-            Eco
-          </span>
-          <span className="text-3xl font-extrabold tracking-tight">Bite</span>
+        <Link href="/" className="flex items-center ">
+          <Image src={Logo} alt="Logo" width={40} height={40} />
+          <span className="text-xl font-extrabold tracking-tight">EcoBite</span>
         </Link>
 
         {/* Desktop Menu */}
