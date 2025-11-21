@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Food Waste & SDG Impact Tracker
 
-## Getting Started
+This project is a **client-side React/Next.js application** designed to help users track food consumption, inventory, waste reduction, and nutrition. It includes:
 
-First, run the development server:
+- **Basic rule-based tracking** of food logs and inventory.
+- **Resource recommendations** based on logged items.
+- **Heuristic SDG scoring engine** to assess weekly impact.
+- **AI/ML-simulated waste estimation model** (formula-based and linear regression-based).
+- **Interactive charts** for weekly and monthly trends.
+- Fully **TailwindCSS-styled UI**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Food Logs & Inventory Tracking**
+   - Log consumed items with quantity and category (Dairy, Vegetables, Fruits, Meat, Other).
+   - Inventory auto-updates when a log is added.
+   - Recent logs and inventory summary are shown.
+   - Persistent storage in browser `localStorage`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Rule-Based Resource Recommendations**
+   - Matches log categories to pre-defined recommendations.
+   - Explains why each recommendation is shown.
 
-## Learn More
+3. **SDG Impact Scoring Engine (`SDGScore.tsx`)**
+   - Scores weekly food choices based on waste reduction, nutrition, protein balance.
+   - Provides actionable tips to improve scores.
+   - Keeps history of last 12 weeks.
+   - Interactive line chart shows trends.
 
-To learn more about Next.js, take a look at the following resources:
+4. **AI Waste Estimation (`AiWasteEstimation.tsx`)**
+   - Predict weekly/monthly waste in grams.
+   - Two methods: formula-based average and simulated ML predictor.
+   - Shows monetary impact of waste.
+   - Weekly history and comparison with community averages.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Reusable Components**
+   - Designed as modular React components.
+   - Can be dropped into Next.js `pages/` or `app/` directories.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
