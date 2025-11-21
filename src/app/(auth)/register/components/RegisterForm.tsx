@@ -67,7 +67,7 @@ const RegisterForm: React.FC = () => {
 
       if (login?.ok) {
         toast.success("Logged in successfully!");
-        router.push("/dashboard/user");
+        router.push("/dashboard");
       } else {
         toast.error("Auto-login failed. Please login manually.");
         router.push("/login");

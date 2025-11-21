@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { ModeToggle } from "../theme/theme-btn";
+
 import {
   Sheet,
   SheetContent,
@@ -16,27 +17,46 @@ import {
 } from "@/components/ui/sheet";
 import UserProfileDropdown from "../module/auth/UserProfileDropdown";
 import Image from "next/image";
-import Logo from "@/assets/images/EcoBite.png";
+// import LogoImg from "@/assets/images/EcobitLogo.png"
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
+
   const pathname = usePathname();
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/inventory", label: "Inventory" },
     { href: "/resources", label: "Resources" },
+    {
+      href: "/nourishbot",
+      label: "NourishBot",
+    },
+    {
+      href: "/risk",
+      label: "InventoryRisk",
+    },
+    {
+      href: "/scan",
+      label: "Scanning",
+    },
   ];
 
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="w-full border-b dark:bg-background sticky top-0 z-50">
-      <nav className="max-w-8xl mx-auto flex justify-between items-center px-4 py-4">
+    <header className="w-full border-b dark:bg-background sticky top-0 z-50 bg-green-50">
+      {/* <LoadingBar color="#933ce6" progress={progress} onLoaderFinished={() => setProgress(0)} /> */}
+      <nav className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center ">
-          <Image src={Logo} alt="Logo" width={40} height={40} />
+          <Image
+            src="https://i.ibb.co/6d5BnPb/Ecobit-Logo.png"
+            alt="Logo"
+            width={40}
+            height={40}
+          />
           <span className="text-xl font-extrabold tracking-tight">EcoBite</span>
         </Link>
 

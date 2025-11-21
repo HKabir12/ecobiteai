@@ -39,13 +39,13 @@ export default function ResourcesPage() {
       <h1 className="text-2xl font-bold">Sustainable Resources</h1>
 
       {/* Filters */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <select
-          className="border p-2 rounded"
+          className="border p-2 rounded "
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="">All Categories</option>
+          <option  value="">All Categories</option>
           <option value="Waste Reduction">Waste Reduction</option>
           <option value="Budget Tips">Budget Tips</option>
           <option value="Meal Planning">Meal Planning</option>

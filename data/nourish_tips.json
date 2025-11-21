@@ -1,0 +1,27 @@
+[
+  {
+    "id": "tips-fruit-seasonal",
+    "title": "Fruits in summer spoil faster",
+    "text": "Fruits like berries and peaches spoil faster in warm weather. Refrigerate berries, eat in 2–3 days, or freeze for smoothies."
+  },
+  {
+    "id": "tips-leftovers-transform",
+    "title": "Creative leftover ideas",
+    "text": "Turn cooked vegetables into a frittata, roast bones into broth, stale bread into croutons or breadcrumbs, and use wilting greens in soups."
+  },
+  {
+    "id": "tips-budget-meal",
+    "title": "Budget meal planning",
+    "text": "Plan 2–3 base ingredients (rice, beans, seasonal veg). Buy in bulk, freeze single portions, and reuse ingredients across meals."
+  },
+  {
+    "id": "tips-food-sharing",
+    "title": "Local food sharing",
+    "text": "Use local platforms, community fridges, or neighbor groups. Package safely, note expiry, and offer during daytime pickups."
+  },
+  {
+    "id": "tips-environment-impact",
+    "title": "Environmental impacts",
+    "text": "Food waste contributes to greenhouse gas emissions. Reducing waste saves money and carbon; prioritize perishable items to reduce landfill methane."
+  }
+]

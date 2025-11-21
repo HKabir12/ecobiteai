@@ -9,6 +9,12 @@ import { ThemeProvider } from "next-themes";
 export const metadata: Metadata = {
   title: "EcoBite",
   description: "EcoBite sustainable eating & tracking",
+  icons:{
+    icon:[
+    {url:"https://i.ibb.co/6d5BnPb/Ecobit-Logo.png" , type:"image/png"}
+    ]
+    
+  }
 };
 
 export default function RootLayout({

@@ -23,7 +23,16 @@ import {
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { LogOut, User, Archive, BookOpen, ClipboardList } from "lucide-react";
+import {
+  LogOut,
+  User,
+  Archive,
+  BookOpen,
+  ClipboardList,
+  Plus,
+  Square,
+  TrainTrack,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const DashboardSidebar = () => {
@@ -33,10 +42,15 @@ const DashboardSidebar = () => {
   // ✅ Sidebar links
   const links = [
     { label: "Dashboard", href: "/dashboard", icon: ClipboardList },
-    { label: "Logs", href: "/dashboard/logs", icon: BookOpen },
-    { label: "Inventory", href: "/dashboard/inventory", icon: Archive },
-    { label: "Resources", href: "/dashboard/resources", icon: BookOpen },
     { label: "Profile", href: "/dashboard/profile", icon: User },
+    { label: "Tracking", href: "/dashboard/tracking", icon: TrainTrack },
+    { label: "Logs", href: "/dashboard/logs", icon: BookOpen },
+    { label: "Add Food", href: "/dashboard/add", icon: Plus },
+    {
+      label: "WasteDashboard",  href: "/dashboard/wastedashboard",  icon: Archive,
+    },
+    { label: "Meal-Plan", href: "/dashboard/meal-plan", icon: BookOpen },
+    { label: "SDGScore", href: "/dashboard/sdgscore", icon: Square },
   ];
 
   const isActive = (href: string) => pathname === href;

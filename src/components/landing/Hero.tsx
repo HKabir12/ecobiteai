@@ -1,73 +1,67 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
+"use client"
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { gsap } from "gsap";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import imgHero from "@/assets/images/EcoBite.png"
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      gsap.from(containerRef.current.children, {
-        opacity: 0,
-        y: 30,
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "power3.out",
-      });
-    }
-  }, []);
-
   return (
-    <section className="w-full ">
-      <div
-        ref={containerRef}
-        className="max-w-5xl mx-auto px-6 text-center flex flex-col items-center"
-      >
-        {/* Logo */}
-        <div className="flex items-center gap-1 mb-4">
-          <span className="text-4xl md:text-5xl font-extrabold ">Eco</span>
-          <span className="text-4xl md:text-5xl font-extrabold ">Bite</span>
-        </div>
+    <section className="max-w-7xl mx-auto bg-white dark:bg-neutral-950 py-6">
+      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        {/* TEXT CONTENT */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6"
+        >
+          <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-neutral-900 dark:text-white">
+            Reduce Food Waste.
+            <br /> Eat Smarter. Live Greener.
+          </h1>
 
-        {/* Headline */}
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight  max-w-3xl">
-          Smart Food Management for a Sustainable Future
-        </h1>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-lg">
+            EcoBite helps you track food usage, manage inventory, scan receipts,
+            and reduce waste with intelligent insights. Save money and build
+            sustainable habits effortlessly.
+          </p>
 
-        {/* Subtext */}
-        <p className="text-lg md:text-xl  mt-4 max-w-2xl">
-          Track your food, reduce waste, save money, and support responsible
-          consumption with real insights and mindful planning.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex gap-4 mt-8">
-          <Link href="/api/auth/signin">
-            <Button className="px-6 py-3 text-lg bg-green-600  hover:bg-green-700">
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <Link
+              href="/register"
+              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl text-lg font-medium shadow-md transition"
+            >
               Get Started
-            </Button>
-          </Link>
-          <Link href="#features">
-            <Button variant="outline" className="px-6 py-3 text-lg ">
-              Learn More
-            </Button>
-          </Link>
-        </div>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
 
-      
-        {/* <div className="mt-14">
-          <Image
-            width={400}
-            height={400}
-            src="/hero-food.png" // replace with your own illustration
-            alt="EcoBite sustainable food illustration"
-            className="mx-auto w-[80%] md:w-[55%] drop-shadow-xl rounded-xl"
-          />
-        </div> */}
+            <Link
+              href="#features"
+              className="inline-flex items-center gap-2 border border-neutral-300 dark:border-neutral-700 px-6 py-3 rounded-xl text-lg font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
+            >
+              Learn More
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* IMAGE MOCKUP */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex justify-center lg:justify-end"
+        >
+          <div className="relative w-full max-w-md">
+            <Image
+              src={imgHero}
+              alt="EcoBite dashboard preview"
+              width={600}
+              height={500}
+              className="rounded-3xl shadow-xl border border-neutral-200 dark:border-neutral-800"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

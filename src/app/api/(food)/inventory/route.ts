@@ -23,3 +23,20 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Failed to fetch inventory" }, { status: 500 });
   }
 }
+
+export async function POST(req: Request) {
+  try {
+    const { userId, items } = await req.json();
+    if (!userId || !items) return NextResponse.json({ error: "Missing data" }, { status: 400 });
+
+    const db = await dbConnect();
+    await db.collection("inventory").insertMany(
+      items.map((item: any) => ({ ...item, userId, createdAt: new Date() }))
+    );
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: "Failed to add inventory" }, { status: 500 });
+  }
+}

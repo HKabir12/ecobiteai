@@ -32,12 +32,14 @@ export default function ProfileForm({ user }: ProfileFormProps) {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "householdSize" || name === "budget" ? Number(value) : value,
+    }));
   };
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -51,27 +53,28 @@ export default function ProfileForm({ user }: ProfileFormProps) {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.error || "Update failed");
+        toast.error(data.error || "Failed to update profile");
       } else {
         toast.success("Profile updated successfully!");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Unexpected error");
+    } catch (err) {
+      console.error("Profile update error:", err);
+      toast.error("Unexpected error occurred");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow"
+      className="space-y-6 bg-white p-6 rounded-xl shadow-md"
     >
       {/* Full Name */}
       <div>
-        <Label>Full Name</Label>
+        <Label htmlFor="fullName">Full Name</Label>
         <Input
+          id="fullName"
           name="fullName"
           value={formData.fullName}
           onChange={handleChange}
@@ -81,22 +84,25 @@ export default function ProfileForm({ user }: ProfileFormProps) {
 
       {/* Household Size */}
       <div>
-        <Label>Household Size</Label>
+        <Label htmlFor="householdSize">Household Size</Label>
         <Input
+          id="householdSize"
           type="number"
           name="householdSize"
           value={formData.householdSize}
           onChange={handleChange}
+          min={1}
           required
         />
       </div>
 
       {/* Dietary Preferences */}
       <div>
-        <Label>Dietary Preferences</Label>
+        <Label htmlFor="dietaryPreferences">Dietary Preferences</Label>
         <Input
+          id="dietaryPreferences"
           name="dietaryPreferences"
-          placeholder="Vegetarian, Vegan, Halal..."
+          placeholder="Vegan, Vegetarian, Halal..."
           value={formData.dietaryPreferences}
           onChange={handleChange}
         />
@@ -104,20 +110,23 @@ export default function ProfileForm({ user }: ProfileFormProps) {
 
       {/* Budget */}
       <div>
-        <Label>Monthly Food Budget (optional)</Label>
+        <Label htmlFor="budget">Monthly Food Budget (optional)</Label>
         <Input
+          id="budget"
           type="number"
           name="budget"
           placeholder="Enter amount in USD"
           value={formData.budget}
           onChange={handleChange}
+          min={0}
         />
       </div>
 
       {/* Location */}
       <div>
-        <Label>Location</Label>
+        <Label htmlFor="location">Location</Label>
         <Input
+          id="location"
           name="location"
           placeholder="City / Region"
           value={formData.location}
@@ -125,11 +134,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
         />
       </div>
 
-      <Button
-        type="submit"
-        className="w-full"
-        disabled={loading}
-      >
+      <Button type="submit" className="w-full" disabled={loading}>
         {loading ? "Updating..." : "Save Changes"}
       </Button>
     </form>
